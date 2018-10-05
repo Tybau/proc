@@ -1,1 +1,5 @@
 *.cf
+*.mti
+*.mpf
+*.wlf
+work/

@@ -21,9 +21,9 @@ architecture behavior of ALU is
 				when "01" => R <= B; 		-- B
 				when "10" => R <= std_logic_vector(signed(A) - signed(B)); 	-- SUB
 				when "11" => R <= A; 		-- A
-				when others => report "unreachable" severity failure;
+				when others => R <= (others => '0');
 			end case;
-			N <= R(31);
-			S <= R;
 		end process;
+		N <= R(31);
+		S <= R;
 end architecture behavior;
