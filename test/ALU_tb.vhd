@@ -7,8 +7,8 @@ end entity ALU_tb;
 
 architecture behavior of ALU_tb is
 	signal OP_i : std_logic_vector(1 downto 0) := "00";
-	signal A_i, B_i : std_logic_vector(31 downto 0) := x"00000000";
-	signal S_i : std_logic_vector(31 downto 0) := x"00000000";
+	signal A_i, B_i : std_logic_vector(31 downto 0);
+	signal S_i : std_logic_vector(31 downto 0);
 	signal N_i : std_logic := '0';
 	begin
 		ALU_I : entity work.ALU port map(
