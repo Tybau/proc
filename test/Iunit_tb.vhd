@@ -8,7 +8,7 @@ architecture rtl of Iunit_tb is
 	signal s_clk: std_logic;
 	signal s_offset: std_logic_vector(23 downto 0);
 	signal s_nPCsel: std_logic;
-	signal s_instruction: std_logic_vector(31 downto 0)
+	signal s_instruction: std_logic_vector(31 downto 0);
 
 begin
 	e_Iunit: entity work.Iunit port map(
@@ -29,13 +29,13 @@ begin
 
 		-- Offset to get mem15
 		s_nPCsel <= '1';
-		s_offset <= x"d";
+		s_offset <= x"00000d";
 		wait for 2 ns;
 		assert s_instruction = x"30" report "Error 2" severity error;
 
 		-- Offset to go back t mem1
 		s_nPCsel <= '1';
-		s_offset <= x"fffffff3";
+		s_offset <= x"fffff3";
 		wait for 2 ns;
 		assert s_instruction = x"0" report "Error 2" severity error;
 		
