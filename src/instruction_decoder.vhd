@@ -12,7 +12,7 @@ entity instruction_decoder is
 		alu_ctr: out std_logic_vector(1 downto 0);
 		psr_en: out std_logic;
 		mem_wr: out std_logic;
-		wr_src: out std_logic
+		wr_src: out std_logic;
 
 		-- Registers
 		rw, ra, rb: out std_logic_vector(3 downto 0);
@@ -22,7 +22,7 @@ entity instruction_decoder is
 end entity;
 
 architecture behavior of instruction_decoder is
-	type enum_instruction is (MOV, ADDi, ADDr, CMP, LDR, STR, BAL, BLT);
+	type enum_instruction is (NOP, MOV, ADDi, ADDr, CMP, LDR, STR, BAL, BLT);
 	signal instr_courante: enum_instruction;
 begin
 	process(instruction)
@@ -32,27 +32,35 @@ begin
 			case instruction(24 downto 21) is
 				when "0100" =>
 					-- ADD
-					with instruction(25) select instr_courante <=
-						ADDi when '1',
-						ADDr when '0';
+					case instruction(25) is
+						when '1' => instr_courante <= ADDi;
+						when '0' => instr_courante <= ADDr;
+						when others => instr_courante <= NOP;
+					end case;
 				when "1101" =>
 					-- MOV
 					instr_courante <= MOV;
 				when "1010" =>
 					-- CMP
 					instr_courante <= CMP;
+				when others =>
+					instr_courante <= NOP;
 			end case;
 
 		elsif(instruction(27 downto 26) = "01") then
 			-- Memoire
-			with instruction(20) select instr_courante <=
-				LDR when '1',
-				STR when '0';
+			case instruction(20) is
+				when '1' => instr_courante <= LDR;
+				when '0' => instr_courante <= STR;
+				when others => instr_courante <= NOP;
+			end case;
 		elsif(instruction(27 downto 26) = "10") then
 			-- Branch
-			with instruction(31 downto 28) select instr_courante <=
-				BAL when "1110",
-				BLT when "1011";
+			case instruction(31 downto 28) is
+				when "1110" => instr_courante <= BAL;
+				when "1011" => instr_courante <= BLT;
+				when others => instr_courante <= NOP;
+			end case;
 		end if;
 	end process;
 
@@ -118,7 +126,7 @@ begin
 				mem_wr <= '0';
 				wr_src <= '0';
 
-				immediate <= instruction(23 downto 0);
+				immediate <= instruction(7 downto 0);
 				ra <= instruction(15 downto 12);
 			when LDR =>
 				n_pc_sel <= '0';
@@ -129,7 +137,7 @@ begin
 				mem_wr <= '0';
 				wr_src <= '1';
 
-				immediate <= instruction(23 downto 0);
+				immediate <= instruction(7 downto 0);
 				rw <= instruction(15 downto 12);
 				ra <= instruction(19 downto 16);
 			when MOV =>
@@ -152,9 +160,10 @@ begin
 				mem_wr <= '1';
 				wr_src <= '0';
 
-				immediate <= instruction(11 downto 0);
+				immediate <= instruction(7 downto 0);
 				rb <= instruction(15 downto 12);	-- Data IN
 				ra <= instruction(19 downto 16);
+			when others =>
 		end case;
 	end process;
 end architecture;
