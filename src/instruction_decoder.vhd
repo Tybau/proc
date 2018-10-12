@@ -127,7 +127,7 @@ begin
 				wr_src <= '0';
 
 				immediate <= instruction(7 downto 0);
-				ra <= instruction(15 downto 12);
+				ra <= instruction(19 downto 16);
 			when LDR =>
 				n_pc_sel <= '0';
 				reg_wr <= '1';
