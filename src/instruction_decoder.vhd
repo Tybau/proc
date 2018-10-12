@@ -64,7 +64,7 @@ begin
 		end if;
 	end process;
 
-	process(instr_courante)
+	process(instruction)
 	begin
 		rw <= (others => '0');
 		ra <= (others => '0');
