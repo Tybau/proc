@@ -28,5 +28,8 @@ add wave Tunit/s_ext_imm
 add wave Tunit/s_data_out
 add wave Tunit/s_alu
 add wave Tunit/s_w
+add wave Tunit/memory/addr
+add wave Tunit/banc_registres/banc
+add wave Tunit/memory/banc
 
 run 20 ns

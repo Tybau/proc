@@ -29,7 +29,7 @@ begin
 	alu_i : entity work.ALU port map(
 		OP => op,
 		A => s_a,
-		B => s_b,
+		B => s_b_alu,
 		S => s_alu,
 		N => N
 	);

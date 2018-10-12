@@ -11,6 +11,6 @@ add wave s_addr
 add wave s_data_in
 add wave s_wr_en
 add wave s_data_out
-add wave s_addr
+add wave memory/banc
 
 run 20 ns

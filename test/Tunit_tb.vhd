@@ -44,12 +44,10 @@ begin
 
 	p_test: process
 	begin
-		-- Setup
+		-- R1 = R15
 		s_imm_sel <= '0';
 		s_mem_sel <= '0';
 		s_wr_en <= '0';
-
-		-- R1 = R15
 		ra <= x"f";
 		s_op <= "11";
 		rw <= x"1";
@@ -57,6 +55,9 @@ begin
 		wait for 2 ns;
 
 		-- R1 = R1 + R15
+		s_imm_sel <= '0';
+		s_mem_sel <= '0';
+		s_wr_en <= '0';
 		ra <= x"1";
 		rb <= x"f";
 		s_op <= "00";
@@ -67,6 +68,9 @@ begin
 --		wait for 1 ns;
 
 		-- R2 = R1 + R15
+		s_imm_sel <= '0';
+		s_mem_sel <= '0';
+		s_wr_en <= '0';
 		ra <= x"1";
 		rb <= x"f";
 		s_op <= "00";
@@ -75,6 +79,9 @@ begin
 		wait for 2 ns;
 
 		-- R3 = R1 - R15
+		s_imm_sel <= '0';
+		s_mem_sel <= '0';
+		s_wr_en <= '0';
 		ra <= x"1";
 		rb <= x"f";
 		s_op <= "10";
@@ -83,10 +90,61 @@ begin
 		wait for 2 ns;
 
 		-- R5 = R7 - R15
+		s_imm_sel <= '0';
+		s_mem_sel <= '0';
+		s_wr_en <= '0';
 		ra <= x"7";
 		rb <= x"f";
 		s_op <= "10";
 		rw <= x"5";
+		we <= '1';
+		wait for 2 ns;
+
+		-- R6 = R15 + 42
+		s_imm_sel <= '1';
+		s_mem_sel <= '0';
+		s_wr_en <= '0';
+		s_imm <= "00101010"; --42
+		ra <= x"f";
+		rb <= x"0";
+		s_op <= "00";
+		rw <= x"6";
+		we <= '1';
+		wait for 2 ns;
+
+		-- R9 = R15 - 42
+		s_imm_sel <= '1';
+		s_mem_sel <= '0';
+		s_wr_en <= '0';
+		s_imm <= "00101010"; --42
+		ra <= x"f";
+		rb <= x"0";
+		s_op <= "10";
+		rw <= x"9";
+		we <= '1';
+		wait for 2 ns;
+
+		-- M6 = R9
+		s_imm_sel <= '0';
+		s_mem_sel <= '0';
+		s_wr_en <= '1';
+		s_imm <= x"00";
+		ra <= x"9";
+		rb <= x"6";
+		s_op <= "11";
+		rw <= x"9";
+		we <= '0';
+		wait for 2 ns;
+
+		-- R10 = M6
+		s_imm_sel <= '0';
+		s_mem_sel <= '1';
+		s_wr_en <= '0';
+		s_imm <= x"00";
+		ra <= x"9";
+		rb <= x"6";
+		s_op <= "11";
+		rw <= x"A";
 		we <= '1';
 		wait for 2 ns;
 
