@@ -6,6 +6,7 @@ end entity;
 
 architecture test of tb_banc_registres is
 	signal s_clk: std_logic := '0';
+	signal s_rst: std_logic := '0';
 	signal s_w: std_logic_vector(31 downto 0) := (others => '0');
 	signal s_ra, s_rb: std_logic_vector(3 downto 0) := (others => '0');
 	signal s_rw: std_logic_vector(3 downto 0) := (others => '0');
@@ -13,6 +14,7 @@ architecture test of tb_banc_registres is
 	signal s_a, s_b: std_logic_vector(31 downto 0) := (others => '0');
 begin
 	banc_registres: entity work.banc_registres port map(
+		rst => s_rst,
 		clk => s_clk,
 		w => s_w,
 		we => s_we,
@@ -34,6 +36,7 @@ begin
 
 	p_test: process
 	begin
+		-- Preparation de l'ecriture dans le registre x"a"
 		s_we <= '0';
 		s_w <= x"cccccccc";
 		s_rw <= x"a";
@@ -43,17 +46,20 @@ begin
 		assert s_a = x"00000000" report "Error 1" severity error;
 		assert s_b = x"00000000" report "Error 2" severity error;
 
+		-- Ecriture dans le registre x"a"
 		s_we <= '1';
 		wait for 2 ns;
 		assert s_a = x"cccccccc" report "Error 3" severity error;
 		assert s_b = x"00000000" report "Error 4" severity error;
 
+		-- Ecriture dans le registre x"2"
 		s_rw <= x"2";
 		s_w <= x"33333333";
 		wait for 2 ns;
 		assert s_a = x"cccccccc" report "Error 5" severity error;
 		assert s_b = x"33333333" report "Error 6" severity error;
 
+		-- Fin de l'ecriture
 		s_we <= '0';
 		assert s_a = x"cccccccc" report "Error 7" severity error;
 		assert s_b = x"33333333" report "Error 8" severity error;

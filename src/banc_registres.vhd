@@ -4,7 +4,7 @@ use ieee.numeric_std.all;
 
 entity banc_registres is
 	port(
-		clk: in std_logic;
+		clk, rst: in std_logic;
 		w: in std_logic_vector(31 downto 0);
 		we: in std_logic;
 		rw: in std_logic_vector(3 downto 0);
@@ -41,3 +41,4 @@ begin
 		end if;
 	end process;
 end architecture;
+
