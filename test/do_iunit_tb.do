@@ -3,7 +3,7 @@ puts "Simulation Iunit"
 vlib work
 vcom -93 ../src/Ext.vhd
 vcom -93 ../src/Mux2.vhd
-vcom -93 ../src/memory.vhd
+vcom -93 ../src/instruction_memory.vhd
 vcom -93 ../src/Iunit.vhd
 vcom -93 ../test/Iunit_tb.vhd
 

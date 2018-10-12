@@ -29,12 +29,9 @@ begin
 		S => pc
 	);
 
-	memory : entity work.memory port map(
-		clk => clk,
-		data_in => (others => '0'),
-		addr => pc_save (5 downto 0),
-		wr_en => '0',
-		data_out => instruction
+	memory : entity work.instruction_memory port map(
+		pc => pc_save,
+		instruction => instruction
 	);
 
 	n_off <= std_logic_vector(signed(pc_save) + 1);
