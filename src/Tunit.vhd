@@ -35,29 +35,29 @@ begin
 	);
 
 	ext : entity work.Ext generic map(bw => 8) port map(
-		E => imm;
+		E => imm,
 		S => s_ext_imm
 	);
 
 	mux1 : entity work.Mux2 port map(
-		COM => imm_sel;
-		A => s_b;
-		B => s_ext_imm;
+		COM => imm_sel,
+		A => s_b,
+		B => s_ext_imm,
 		S => s_b_alu
 	);
 
 	memory : entity work.memory port map(
-		clk => clk;
-		data_in => s_b;
-		addr => s_alu;
-		wr_en => wr_en;
+		clk => clk,
+		data_in => s_b,
+		addr => s_alu (5 downto 0),
+		wr_en => wr_en,
 		data_out => s_data_out
 	);
 
 	mux2 : entity work.Mux2 port map(
-		COM => mem_sel;
-		A => s_alu;
-		B => s_data_out;
+		COM => mem_sel,
+		A => s_alu,
+		B => s_data_out,
 		S => s_w
 	);
 
@@ -70,6 +70,6 @@ begin
 		rb => rb,
 		rw => rw,
 		a => s_a,
-		b => s_b_alu
+		b => s_b
 	);
 end architecture;

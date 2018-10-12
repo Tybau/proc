@@ -17,7 +17,7 @@ architecture behavior of memory is
 	function init_banc return table is
 		variable result: table;
 	begin
-		for i in 14 downto 0 loop
+		for i in 63 downto 0 loop
 			result(i) := (others => '0');
 		end loop;
 		result(15) := x"00000030";
