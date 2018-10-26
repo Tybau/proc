@@ -14,6 +14,7 @@ entity Cunit is
 		mem_wr: out std_logic;
 		wr_src: out std_logic;
 		alu_src: out std_logic;
+        reg_sel_mux_rb_rw: out std_logic;
 
 		-- Registers
 		rw, ra, rb: out std_logic_vector(3 downto 0);
@@ -38,6 +39,7 @@ begin
 		psr_en => s_psr_en,
 		mem_wr => mem_wr,
 		wr_src => wr_src,
+        reg_sel_mux_rb_rw => reg_sel_mux_rb_rw,
 
 		-- Registers
 		rw => rw,

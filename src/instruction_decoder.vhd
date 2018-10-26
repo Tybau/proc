@@ -14,6 +14,7 @@ entity instruction_decoder is
 		mem_wr: out std_logic;
 		wr_src: out std_logic;
 		alu_src: out std_logic;
+        reg_sel_mux_rb_rw: out std_logic;
 
 		-- Registers
 		rw, ra, rb: out std_logic_vector(3 downto 0);
@@ -82,6 +83,7 @@ begin
 				psr_en <= '1';
 				mem_wr <= '0';
 				wr_src <= '0';
+                reg_sel_mux_rb_rw <= '0';
 
 				rw <= instruction(15 downto 12);
 				ra <= instruction(19 downto 16);
@@ -94,6 +96,7 @@ begin
 				psr_en <= '1';
 				mem_wr <= '0';
 				wr_src <= '0';
+                reg_sel_mux_rb_rw <= '0';
 
 				rw <= instruction(15 downto 12);
 				ra <= instruction(19 downto 16);
@@ -106,6 +109,7 @@ begin
 				psr_en <= '0';
 				mem_wr <= '0';
 				wr_src <= '0';
+                reg_sel_mux_rb_rw <= '0';
 
 				offset <= instruction(23 downto 0);
 			when BLT =>
@@ -116,6 +120,7 @@ begin
 				psr_en <= '0';
 				mem_wr <= '0';
 				wr_src <= '0';
+                reg_sel_mux_rb_rw <= '0';
 
 				offset <= instruction(23 downto 0);
 			when CMP =>
@@ -126,6 +131,7 @@ begin
 				psr_en <= '1';
 				mem_wr <= '0';
 				wr_src <= '0';
+                reg_sel_mux_rb_rw <= '0';
 
 				immediate <= instruction(7 downto 0);
 				ra <= instruction(19 downto 16);
@@ -137,6 +143,7 @@ begin
 				psr_en <= '0';
 				mem_wr <= '0';
 				wr_src <= '1';
+                reg_sel_mux_rb_rw <= '0';
 
 				immediate <= instruction(7 downto 0);
 				rw <= instruction(15 downto 12);
@@ -149,6 +156,7 @@ begin
 				psr_en <= '0';
 				mem_wr <= '0';
 				wr_src <= '0';
+                reg_sel_mux_rb_rw <= '0';
 
 				immediate <= instruction(7 downto 0);
 				rw <= instruction(15 downto 12);
@@ -160,6 +168,7 @@ begin
 				psr_en <= '0';
 				mem_wr <= '1';
 				wr_src <= '0';
+                reg_sel_mux_rb_rw <= '1';
 
 				immediate <= instruction(7 downto 0);
 				rb <= instruction(15 downto 12);	-- Data IN

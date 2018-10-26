@@ -30,12 +30,14 @@ begin
 	C <= '0';
 	V <= '0';
 	
-	mux_rb_rw: entity work.Mux2 generic map(N => 4) port map(
-		COM => reg_sel,
-		A => rb,
-		B => rw,
-		S => s_rb_reg
-	);
+	--mux_rb_rw: entity work.Mux2 generic map(N => 4) port map(
+		--COM => reg_sel,
+		--A => rw,
+		--B => rb,
+		--S => s_rb_reg
+	--);
+    s_rb_reg <= rb;
+
 	alu_i : entity work.ALU port map(
 		OP => op,
 		A => s_a,
