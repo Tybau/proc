@@ -109,7 +109,7 @@ begin
 
 				offset <= instruction(23 downto 0);
 			when BLT =>
-				n_pc_sel <= '1';
+				n_pc_sel <= psr_out(3);
 				reg_wr <= '0';
 				alu_src <= '0';
 				alu_ctr <= "11";
