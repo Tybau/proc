@@ -30,7 +30,7 @@ add wave /cpu_tb/e_CPU/e_Tunit/banc_registres/b
 add wave /cpu_tb/e_CPU/e_Tunit/banc_registres/rw
 add wave /cpu_tb/e_CPU/e_Tunit/imm
 add wave /cpu_tb/e_CPU/e_Tunit/alu_i/A
-add wave /cpu_tb/e_CPU/e_Tunit/alu_i/B 
-add wave /cpu_tb/e_CPU/e_Tunit/mux_imm/COM 
+add wave /cpu_tb/e_CPU/e_Tunit/alu_i/B
+add wave /cpu_tb/e_CPU/e_Tunit/mux_imm/COM
 
 run 20 ns
