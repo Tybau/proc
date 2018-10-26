@@ -14,6 +14,7 @@ architecture test of Tunit_tb is
 	signal s_wr_en: std_logic;
 	signal s_imm: std_logic_vector(7 downto 0);
 	signal s_imm_sel, s_mem_sel : std_logic;
+	signal s_reg_sel: std_logic;
 begin
 	tunit: entity work.Tunit port map(
 		clk => s_clk,
@@ -21,6 +22,7 @@ begin
 		ra => ra,
 		rb => rb,
 		rw => rw,
+		reg_sel => s_reg_sel,
 		we => we,
 		op => s_op,
 		wr_en => s_wr_en,

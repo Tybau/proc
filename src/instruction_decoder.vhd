@@ -4,15 +4,16 @@ use ieee.std_logic_1164.all;
 entity instruction_decoder is
 	port(
 		instruction: in std_logic_vector(31 downto 0);
+        psr_out: in std_logic_vector(31 downto 0);
 
 		-- Params
 		n_pc_sel: out std_logic;
 		reg_wr: out std_logic;
-		alu_src: out std_logic;
 		alu_ctr: out std_logic_vector(1 downto 0);
 		psr_en: out std_logic;
 		mem_wr: out std_logic;
 		wr_src: out std_logic;
+		alu_src: out std_logic;
 
 		-- Registers
 		rw, ra, rb: out std_logic_vector(3 downto 0);

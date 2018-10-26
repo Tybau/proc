@@ -20,7 +20,7 @@ architecture behavior of memory is
 		for i in 63 downto 0 loop
 			result(i) := (others => '0');
 		end loop;
-		result(15) := x"00000030";
+		result(32) := x"00000030";
 		return result;
 	end init_banc;
 

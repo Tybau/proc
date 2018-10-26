@@ -5,11 +5,13 @@ entity Tunit is
 	port(
 		clk, rst: in std_logic;
 		ra, rb, rw: in std_logic_vector(3 downto 0);
+		reg_sel: in std_logic;
 		we: in std_logic;
 		op: in std_logic_vector(1 downto 0);
 		wr_en: in std_logic;
+		mem_sel: in std_logic;
 		imm: in std_logic_vector(7 downto 0);
-		imm_sel, mem_sel : in std_logic;
+		imm_sel: in std_logic;
 		N, Z, C, V: out std_logic
 	);
 end entity;
@@ -22,10 +24,18 @@ architecture behavior of Tunit is
 	signal s_ext_imm : std_logic_vector(31 downto 0);
 	signal s_data_out : std_logic_vector(31 downto 0);
 	signal s_alu : std_logic_vector(31 downto 0);
+	signal s_rb_reg: std_logic_vector(3 downto 0);
 begin
 	Z <= '0';
 	C <= '0';
 	V <= '0';
+	
+	mux_rb_rw: entity work.Mux2 generic map(N => 4) port map(
+		COM => reg_sel,
+		A => rb,
+		B => rw,
+		S => s_rb_reg
+	);
 	alu_i : entity work.ALU port map(
 		OP => op,
 		A => s_a,
@@ -39,7 +49,7 @@ begin
 		S => s_ext_imm
 	);
 
-	mux1 : entity work.Mux2 port map(
+	mux_imm : entity work.Mux2 port map(
 		COM => imm_sel,
 		A => s_b,
 		B => s_ext_imm,
@@ -54,7 +64,7 @@ begin
 		data_out => s_data_out
 	);
 
-	mux2 : entity work.Mux2 port map(
+	mux_data_mem : entity work.Mux2 port map(
 		COM => mem_sel,
 		A => s_alu,
 		B => s_data_out,
@@ -67,7 +77,7 @@ begin
 		w => s_w,
 		we => we,
 		ra => ra,
-		rb => rb,
+		rb => s_rb_reg,
 		rw => rw,
 		a => s_a,
 		b => s_b

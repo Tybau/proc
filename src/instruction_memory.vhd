@@ -6,7 +6,7 @@ entity instruction_memory is
 	port(
 		PC: in std_logic_vector (31 downto 0);
 		Instruction: out std_logic_vector (31 downto 0)
-    );
+	);
 end entity;
 
 architecture RTL of instruction_memory is
