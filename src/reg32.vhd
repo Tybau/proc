@@ -13,16 +13,15 @@ end entity;
 architecture behavior of reg32 is
 	signal reg: std_logic_vector(31 downto 0);
 begin
+    data_out <= reg;
+
 	process(clk)
 	begin
 		if(rst = '1') then
 			reg <= (others => '0');
-			data_out <= (others => '0');
 		elsif(rising_edge(clk)) then
 			if(we = '1') then
 				reg <= data_in;
-			elsif(we = '0') then
-				data_out <= reg;
 			end if;
 		end if;
 	end process;

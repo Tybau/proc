@@ -22,15 +22,15 @@ add wave s_rst
 add wave e_CPU/e_Tunit/memory/banc
 add wave e_CPU/e_Tunit/banc_registres/banc
 add wave e_CPU/e_Iunit/pc_save
-add wave /cpu_tb/e_CPU/e_Tunit/alu_i/S
+add wave /cpu_tb/e_CPU/e_Cunit/e_instruction_decoder/instr_courante
 add wave /cpu_tb/e_CPU/e_Tunit/banc_registres/ra
 add wave /cpu_tb/e_CPU/e_Tunit/banc_registres/rb
+add wave /cpu_tb/e_CPU/e_Tunit/banc_registres/rw
 add wave /cpu_tb/e_CPU/e_Tunit/banc_registres/a
 add wave /cpu_tb/e_CPU/e_Tunit/banc_registres/b
-add wave /cpu_tb/e_CPU/e_Tunit/banc_registres/rw
-add wave /cpu_tb/e_CPU/e_Tunit/imm
-add wave /cpu_tb/e_CPU/e_Tunit/alu_i/A
-add wave /cpu_tb/e_CPU/e_Tunit/alu_i/B
-add wave /cpu_tb/e_CPU/e_Tunit/mux_imm/COM
+# add wave /cpu_tb/e_CPU/e_Tunit/mux_rb_rw/A
+# add wave /cpu_tb/e_CPU/e_Tunit/mux_rb_rw/B
+# add wave /cpu_tb/e_CPU/e_Tunit/mux_rb_rw/COM
+# add wave /cpu_tb/e_CPU/e_Tunit/mux_rb_rw/S
 
-run 20 ns
+run 120 ns

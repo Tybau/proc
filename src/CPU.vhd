@@ -64,6 +64,7 @@ begin
 		alu_ctr => s_op,
 		mem_wr => s_wr_en,
 		wr_src => s_mem_sel,
+        reg_sel_mux_rb_rw => s_reg_sel,
 
 		-- Registers
 		rw => s_rw,
