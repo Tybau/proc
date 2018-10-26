@@ -19,6 +19,7 @@ add wave s_ra
 add wave s_rb
 add wave s_imm
 add wave s_offset
-add wave /instruction_decoder_tb/instruction_decoder/instr_courante 
+add wave s_psr_out
+add wave /instruction_decoder_tb/instruction_decoder/instr_courante
 
 run 20 ns

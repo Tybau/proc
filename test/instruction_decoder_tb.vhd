@@ -16,6 +16,7 @@ architecture rtl of instruction_decoder_tb is
 	signal s_ra, s_rb, s_rw : std_logic_vector(3 downto 0);
 	signal s_offset: std_logic_vector(23 downto 0);
 	signal s_imm: std_logic_vector(7 downto 0);
+	signal s_psr_out : std_logic_vector(31 downto 0);
 begin
 	instruction_decoder: entity work.instruction_decoder port map(
 		instruction => s_instruction,
@@ -30,7 +31,8 @@ begin
 		ra => s_ra,
 		rb => s_rb,
 		offset => s_offset,
-		immediate => s_imm
+		immediate => s_imm,
+		psr_out => s_psr_out
 	);
 
 	bench: process
@@ -54,6 +56,7 @@ begin
 		wait for 2 ns;
 
 		s_instruction <= x"BAFFFFFB"; -- BLT loop
+		s_psr_out <= x"00000000";
 		wait for 2 ns;
 
 		s_instruction <= x"E6012000"; -- STR R2,0(R1)
