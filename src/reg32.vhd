@@ -15,7 +15,7 @@ architecture behavior of reg32 is
 begin
     data_out <= reg;
 
-	process(clk)
+	process(clk, rst)
 	begin
 		if(rst = '1') then
 			reg <= (others => '0');
