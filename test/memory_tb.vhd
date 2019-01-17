@@ -30,7 +30,7 @@ begin
 
 	p_test: process
 	begin
-		-- Preparation de l'ecriture dans le registre x"a"
+		-- Preparation de l'ecriture dans le registre x"11"
 		s_wr_en <= '0';
 		s_addr <= "010001";
 		wait for 2 ns;

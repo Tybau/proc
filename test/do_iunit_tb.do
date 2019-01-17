@@ -10,11 +10,11 @@ vcom -93 ../test/Iunit_tb.vhd
 vsim Iunit_tb
 
 add wave s_clk
-add wave s_offset
+add wave -radix hexadecimal s_offset
 add wave s_nPCsel
-add wave s_instruction
+add wave -radix hexadecimal s_instruction
 #add wave Iunit/pc
-add wave Iunit/pc_save
+add wave -radix hexadecimal Iunit/pc_save
 #add wave Iunit/y_off
 #add wave Iunit/n_off
 

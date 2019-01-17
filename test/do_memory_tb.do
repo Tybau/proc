@@ -7,10 +7,10 @@ vcom -93 ../test/memory_tb.vhd
 vsim memory_tb
 
 add wave s_clk
-add wave s_addr
-add wave s_data_in
+add wave -radix hexadecimal s_addr
+add wave -radix hexadecimal s_data_in
 add wave s_wr_en
-add wave s_data_out
-add wave memory/banc
+add wave -radix hexadecimal s_data_out
+add wave -radix hexadecimal memory/banc(9)
 
-run 20 ns
+run 6 ns

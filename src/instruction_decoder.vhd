@@ -63,10 +63,12 @@ begin
 				when "1011" => instr_courante <= BLT;
 				when others => instr_courante <= NOP;
 			end case;
+        else
+            instr_courante <= NOP;
 		end if;
 	end process;
 
-	process(instr_courante, instruction)
+	process(instr_courante, instruction, psr_out)
 	begin
 		rw <= (others => '0');
 		ra <= (others => '0');
@@ -174,6 +176,15 @@ begin
 				rb <= instruction(15 downto 12);	-- Data IN
 				ra <= instruction(19 downto 16);
 			when others =>
+                -- Cant access, to avoid inferred latches
+                n_pc_sel <= '0';
+				reg_wr <= '0';
+				alu_src <= '0';
+				alu_ctr <= "00";
+				psr_en <= '0';
+				mem_wr <= '0';
+				wr_src <= '0';
+                reg_sel_mux_rb_rw <= '0';
 		end case;
 	end process;
 end architecture;

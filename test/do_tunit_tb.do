@@ -12,24 +12,32 @@ vcom -93 ../test/Tunit_tb.vhd
 vsim Tunit_tb
 
 add wave s_clk
-add wave ra
-add wave rb
-add wave rw
+add wave -radix hexadecimal ra
+add wave -radix hexadecimal rb
+add wave -radix hexadecimal rw
 add wave we
 add wave s_op
 add wave s_wr_en
-add wave s_imm
+add wave -radix hexadecimal s_imm
 add wave s_imm_sel
+add wave -radix hexadecimal Tunit/s_ext_imm
 add wave s_mem_sel
-add wave Tunit/s_a
-add wave Tunit/s_b
-add wave Tunit/s_b_alu
-add wave Tunit/s_ext_imm
-add wave Tunit/s_data_out
-add wave Tunit/s_alu
-add wave Tunit/s_w
-add wave Tunit/memory/addr
-add wave Tunit/banc_registres/banc
-add wave Tunit/memory/banc
+add wave -radix hexadecimal Tunit/s_a
+add wave -radix hexadecimal Tunit/s_b
+add wave -radix hexadecimal Tunit/s_b_alu
+add wave -radix hexadecimal Tunit/s_data_out
+add wave -radix hexadecimal Tunit/s_alu
+add wave -radix hexadecimal Tunit/s_w
+add wave -radix hexadecimal Tunit/memory/addr
+add wave -radix hexadecimal Tunit/banc_registres/banc(1)
+add wave -radix hexadecimal Tunit/banc_registres/banc(2)
+add wave -radix hexadecimal Tunit/banc_registres/banc(3)
+add wave -radix hexadecimal Tunit/banc_registres/banc(5)
+add wave -radix hexadecimal Tunit/banc_registres/banc(6)
+add wave -radix hexadecimal Tunit/banc_registres/banc(7)
+add wave -radix hexadecimal Tunit/banc_registres/banc(9)
+add wave -radix hexadecimal Tunit/banc_registres/banc(10)
+add wave -radix hexadecimal Tunit/banc_registres/banc(15)
+add wave -radix hexadecimal Tunit/memory/banc(6)
 
-run 20 ns
+run 18 ns

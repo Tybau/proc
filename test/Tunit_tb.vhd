@@ -127,12 +127,13 @@ begin
 		wait for 2 ns;
 
 		-- M6 = R9
+		-- It loads the memory adress from the R9 register and load the R9 value to put it into the memory
 		s_imm_sel <= '0';
 		s_mem_sel <= '0';
 		s_wr_en <= '1';
 		s_imm <= x"00";
 		ra <= x"9";
-		rb <= x"6";
+		rb <= x"9";
 		s_op <= "11";
 		rw <= x"9";
 		we <= '0';
